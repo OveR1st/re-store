@@ -8,25 +8,20 @@ import Spinner from '../spinner';
 import withBookstoreService from '../hoc';
 import { booksLoaded, booksRequested, booksError } from '../../actions';
 import { compose } from '../../utils/';
-
+import { BookstoreServiceProvider } from '../bookstore-service-context';
+44
 class BookList extends Component {
 
   componentDidMount () {
-    // 1. receive data
-    console.log(this.props); 
-    const { bookstoreService, booksLoaded, booksRequested, booksError } = this.props;
-    booksRequested();
-    bookstoreService.getBooks()
-      .then((data) => {
-        // 2. dispatch action to store
-        booksLoaded(data)
-      })
-      .catch((err) => booksError(err));
+    this.props.fetchBooks();
   }
 
 
   render(){
-    const { books, loading, error } = this.props;
+    const { 
+      books,
+      loading,
+      error } = this.props;
 
     if (loading) {
       return <Spinner />
@@ -52,10 +47,17 @@ const mapStateToProps = ({ books, loading, error }) => { // получение �
   return { books, loading, error };
 }
 
-const mapDispatchToProps =  { // отправка действий в reducer 
-   booksLoaded,
-   booksRequested,
-   booksError
+const mapDispatchToProps = (dispatch, ownProps) => { // для отправки действий в reducer 
+  const { bookstoreService } = ownProps;
+  return {
+    fetchBooks: () => {
+
+      dispatch(booksRequested());
+      bookstoreService.getBooks()
+        .then((data) => dispatch(booksLoaded(data)))
+        .catch((err) => dispatch(booksError(err)));
+    }
+  }
 }
 
 export default compose (
