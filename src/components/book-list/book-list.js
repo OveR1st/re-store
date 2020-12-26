@@ -8,6 +8,7 @@ import Spinner from '../spinner';
 
 import withBookstoreService from '../hoc';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux'
 
 import { fetchBooks, bookAddedToCart } from '../../actions';
 
@@ -60,12 +61,11 @@ const mapStateToProps = ({ bookList: { books, loading, error } }) => { // пол
 }
 
 const mapDispatchToProps = (dispatch, { bookstoreService }) => { // для отправки действий в reducer 
-  return {
-    fetchBooks: fetchBooks(bookstoreService, dispatch),
-    onAddedToCart: (id) => { dispatch(bookAddedToCart(id))
-    } 
-  }
-}
+  return bindActionCreators({
+    fetchBooks: fetchBooks(bookstoreService),
+    onAddedToCart: bookAddedToCart
+    }, dispatch);
+};
 
 export default compose (
   withBookstoreService(),
