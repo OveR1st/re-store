@@ -28,14 +28,14 @@ export const bookAddedToCart = (bookId) => {
 
 export const bookRemoveFromToCart = (bookId) => {
   return {
-    type: 'BOOK_REMOVED_TO_CART',
+    type: 'BOOK_REMOVED_FROM_CART',
     payload: bookId,
   }
 }
 
 export const allBooksRemovedToCart = (bookId) => {
   return {
-    type: 'ALL_BOOKS_REMOVED_TO_CART',
+    type: 'ALL_BOOKS_REMOVED_FROM_CART',
     payload: bookId,
   }
 }

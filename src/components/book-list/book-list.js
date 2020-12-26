@@ -55,7 +55,7 @@ class BookListContainer extends Component {
 
 
 
-const mapStateToProps = ({ books, loading, error }) => { // получение объекта state в компонент
+const mapStateToProps = ({ bookList: { books, loading, error } }) => { // получение объекта state в компонент
   return { books, loading, error };
 }
 
