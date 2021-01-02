@@ -11,7 +11,6 @@ const booksLoaded = (newBooks) => {
   };
 };
 
-
 const booksError = (error) => {
   return {
     type: 'FETCH_BOOKS_FAILURE',
@@ -40,7 +39,6 @@ export const allBooksRemovedToCart = (bookId) => {
   }
 }
 
-
 const fetchBooksOld = (bookstoreService, dispatch) => () => {
   dispatch(booksRequested());
   bookstoreService.getBooks()
@@ -53,7 +51,6 @@ const fetchBooks = (bookstoreService) => () => (dispatch) => {
   bookstoreService.getBooks()
     .then((data) => dispatch(booksLoaded(data)))
 }
-
 
 export {
  fetchBooks

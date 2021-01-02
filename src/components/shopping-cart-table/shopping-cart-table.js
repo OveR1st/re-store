@@ -1,6 +1,9 @@
 import React from 'react';
+
 import { connect } from 'react-redux';
+
 import './shopping-cart-table.css';
+
 import { 
   bookAddedToCart,
   bookRemoveFromToCart,

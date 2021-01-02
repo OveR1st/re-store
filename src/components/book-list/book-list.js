@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './book-list.css';
+
 import { compose } from '../../utils/';
 
 import ErrorIndicator from '../error-indicator';
@@ -34,7 +35,6 @@ class BookListContainer extends Component {
     this.props.fetchBooks();
   }
 
-
   render(){
     const { 
       books,
@@ -54,13 +54,11 @@ class BookListContainer extends Component {
   }
 }
 
-
-
-const mapStateToProps = ({ bookList: { books, loading, error } }) => { // получение объекта state в компонент
+const mapStateToProps = ({ bookList: { books, loading, error } }) => {
   return { books, loading, error };
 }
 
-const mapDispatchToProps = (dispatch, { bookstoreService }) => { // для отправки действий в reducer 
+const mapDispatchToProps = (dispatch, { bookstoreService }) => {
   return bindActionCreators({
     fetchBooks: fetchBooks(bookstoreService),
     onAddedToCart: bookAddedToCart

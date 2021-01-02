@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './app.css';
+
 import ShopHeader from '../shop-header';
 
 import withBookstoreService from '../hoc';

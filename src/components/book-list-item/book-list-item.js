@@ -1,7 +1,6 @@
 import React from 'react';
 import './book-list-item.css';
 
-
 const BookListItem = ({ book, onAddedToCart }) => {
   const { title, author, price, coverImage } = book;
   return (
